@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:3003/posts"
+export const BASE_URL = "https://desafiomorada.herokuapp.com/posts"
