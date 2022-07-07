@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import useForm from "../../Hooks/useForm";
 import Header from "../../Components/Header/Header";
-import { FormAndPosts, MainContainerFeed, PostsOnly } from "./styled";
+import { ButtonForm, FormAndPosts, FormInput, MainContainerFeed, PostsOnly } from "./styled";
 
 const Feed = () => {
   const [getPost, setGetPost] = useState([]);
@@ -26,11 +26,10 @@ const Feed = () => {
     axios
       .get(`${BASE_URL}`)
       .then((res) => {
-        // console.log(res.data.mensagem)
         setGetPost(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        
       });
   };
 
@@ -43,12 +42,26 @@ const Feed = () => {
         getPosts();
       })
       .catch((err) => {
-        // alert(res)
       });
   };
 
+  const deletePost = (id) => {
+    axios
+      .delete(`${BASE_URL}/${id}`)
+      .then((res) => {
+        getPosts()
+      })
+      .catch(error => {
+          console.error('There was an error!', error);
+      });
+  }
+
   const mapeandoPosts = getPost.map((post) => {
-    return <CardPosts id={post.id} mensagem={post.mensagem} />;
+    return <CardPosts 
+    id={post.id} 
+    mensagem={post.mensagem} 
+    deletePost={()=>deletePost(post.id)} 
+    />;
   });
 
   return (
@@ -56,7 +69,8 @@ const Feed = () => {
       <Header />
       <MainContainerFeed>
         <FormAndPosts>
-          <form onSubmit={onSubmitForm}>
+          <FormInput>
+            <form onSubmit={onSubmitForm}>
             <TextField
               id="outlined-basic"
               label="Deixe sua reflexão"
@@ -68,8 +82,13 @@ const Feed = () => {
               required
               type={"text"}
             />
-            <button>Enviar</button>
+            <ButtonForm>
+              <button>Enviar</button>
+            </ButtonForm>
+            
           </form>
+          </FormInput>
+          
           <PostsOnly>
         
               {mapeandoPosts.length > 0 ? mapeandoPosts : <p>Loading ...</p>}

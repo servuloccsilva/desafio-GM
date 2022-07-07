@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom"
 const CardPosts = (props) => {
     const navigate = useNavigate()
 
-    console.log(props)
     return(
         <MainContainerCard>
             <div>
                 {props.mensagem}
+                <br></br>
+                <button onClick={props.deletePost}>Deletar</button>
             </div>
         </MainContainerCard>
     )

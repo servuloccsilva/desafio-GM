@@ -16,22 +16,17 @@ const Header = () => {
     <HeaderContainer>
       <AppBar position="static">
         <Toolbar variant="dense">
-          {/* <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          > */}
-            {/* <MenuIcon /> */}
-          {/* </IconButton> */}
           <Typography 
           margin={"auto"}
           variant="h6" 
-          color="inherit" 
+          color="white" 
           component="div"
           onClick={()=>goToInitialPage(navigate)}
+          textAlign="center"
+          marginTop="6px"
           >
-            Morada do Conforto
+            Morada do Conforto<br></br>
+            <span><i>Compartilhe aqui seus sentimentos e reflexões</i></span>
           </Typography>
         </Toolbar>
       </AppBar>
