@@ -15,3 +15,8 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
+
+export const PostsOnly = styled.div`
+display: flex;
+flex-direction: column-reverse;
+`
